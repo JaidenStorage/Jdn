@@ -1,21 +1,23 @@
 #include "Basic_C++.h"
 
+
 void _Bin_Oct_Dec_Hex()
 {
-	unsigned char bin = 0b0101'0101;	// 2진법 표기법
-	unsigned char oct = 0125;			// 8진법 표기법
+	unsigned char Bin = 0b0101'0101;	// 2진법 표기법
+	unsigned char Oct = 0125;			// 8진법 표기법
 	unsigned char Dec = 85;				// 10진법 표기법
 	unsigned char Hex = 0x55;			// 16진법 표기법
 }
+
 
 void _text()
 {
 	// char		: 1byte
 	// w_char	: 2byte
-	// t_char	: multi-byte일때 char, Unicode일때 w_char
+	// TCHAR	: multi-byte일때 char, Unicode일때 w_char
 
 	// LPSTR	= long pointer string				= char *
-	// LPCSTR	= long pointer constant stsring		= const char *
+	// LPCSTR	= long pointer constant string		= const char *
 	// LPWSTR	= long pointer wide string			= w_char*
 	// LPCWSTR	= long pointer constant wide string = const w_char*
 	// LPCTSTR	= long pointer constant t_string	= const t_char *
@@ -23,36 +25,90 @@ void _text()
 	// char		char_[]		= "Hello World!";
 	// wchar_t	wchar_t_[]	= L"Hello World!";
 	// TCHAR	TCHAR_[]	= _T("Hello World!");
+
+	// string	: char 베이스 컨테이너
+	// wstring	: wchar_t 베이스
+
+	// CStringA	: char 베이스
+	// CStringW	: wchar_t 베이스
+	// CString	: TCAHR 베이스
 }
 
 
 void _Char()
 {
-	// Number <-> Text
+	char		char_[] = "Hello World!";
+
+	// int <-> char*
+	sprintf_s(pchar_, sizeof(pchar_), "%d", int_);		// int -> char*
+	int_ = atoi(pchar_);								// char* -> int
+
+	// float <-> char*
+	sprintf_s(pchar_, sizeof(pchar_), "%f", float_);	// float -> char*
+	double_ = atof(pchar_);								// char* -> float
+
+	// CString <-> char*
+	CString_ = pchar_;						// char* -> CString
+	//pchar_ = CString_;					// CString -> char*의 경우 CString이 기본적으로 TCHAR이고, 유니코드에서 wchar_t로 동작하기 때문에 위험성이 있다.
+
+	// string <-> char*
+	string_ = pchar_;						// char* -> string
+	cchar_ = string_.c_str();				// string -> const char*
+
+
+	// fuction
 	{
-		sprintf_s(pchar_, sizeof(pchar_), "%d", int_);		// int -> char*
-		sprintf_s(pchar_, sizeof(pchar_), "%f", float_);	// float -> char*
+		const char* src;
+		const char* src_;
+		char* dst;
+		size_t length;
 
-		int_ = atoi(pchar_);		// char* -> int
-		double_ = atof(pchar_);		// char* -> float
+		size_t size = strlen(dst);					// 문자열 길이					// \0까지의 길이, sizeof랑 값이 다름
+		strcpy_s(dst, sizeof(dst), src);			// 문자열 복사					// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		strncpy_s(dst, sizeof(dst), src, length);	// 문자열 지정길이만큼 복사		// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		strcat_s(dst, sizeof(src), src);			// 문자열 덧붙이기				// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		strncat_s(dst, sizeof(src), src, length);	// 문자열 지정길이만큼 덧붙이기	// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		strcmp(src, src_);							// 문자열 비교함수, 같으면 0		
+		strncmp(src, src_, length);					// 문자열 length만큼 비교, 같으면 0 
 	}
-
-	// Text <-> Text
-	{
-		CString_ = pchar_;						// char* -> CString
-
-		string_ = pchar_;						// char* -> string
-		cchar_ = string_.c_str();				// string -> const char*
-	}
-
-	size_t strlen(const char* s);		// 문자열 길이
-	char* strcpy(char* dest, const char* src);				// 문자열 복사
-	char* strncpy(char* dest, const char* src, size_t n);	// 문자열 복사
-	char* strcat(char* dest, const char* src);				// 문자열 덧붙이기
-	char* strncat(char* dest, const char* src, size_t n);	// 문자열 덧붙이기
-	int strcmp(const char* s1, const char* s2);				// 문자열 비교함수, 같으면 0 반환
-	int strncmp(const char* s1, const char* s2, size_t n);	// 문자열 비교함수, 같으면 0 반환
 }
+
+void _wchar_t()
+{
+	// int <-> wchar_t*
+	swprintf_s(pwchar_t_, sizeof(pwchar_t_), L"%d", int_);		// int -> wchar_t*
+	int_ = _wtoi(pwchar_t_);		// wchar_t* -> int
+
+	// float <-> wchar_t*
+	swprintf_s(pwchar_t_, sizeof(pwchar_t_), L"%f", float_);	// float -> wchar_t*
+	float_ = _wtof(pwchar_t_);		// wchar_t* -> float
+
+	// CString <-> const wchar_t*
+	CString_ = cwchar_t_;			// const wchar_t* -> CString
+	cwchar_t_ = CString_;			// CString -> const wchar_t*
+	
+	// wstring <-> const wchar_t*
+	wstring_ = cwchar_t_;			// const wchar_t* -> wstring
+	wstring_ = cwchar_t_;			// wstring -> const wchar_t* 
+
+	// fuction
+	{
+		const wchar_t* src;
+		const wchar_t* src_;
+		wchar_t* dst;
+		size_t length;
+
+		size_t size = wcslen(dst);					// 문자열 길이					// \0까지의 길이, sizeof랑 값이 다름
+		wcscpy_s(dst, sizeof(dst), src);			// 문자열 복사					// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		wcsncpy_s(dst, sizeof(dst), src, length);	// 문자열 지정길이만큼 복사		// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		wcscat_s(dst, sizeof(src), src);			// 문자열 덧붙이기				// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		wcsncat_s(dst, sizeof(src), src, length);	// 문자열 지정길이만큼 덧붙이기	// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		wcscmp(src, src_);							// 문자열 비교함수, 같으면 0		
+		wcsncmp(src, src_, length);					// 문자열 length만큼 비교, 같으면 0 
+	}
+
+}
+
 
 void _string()
 {
