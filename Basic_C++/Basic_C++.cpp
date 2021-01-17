@@ -1,6 +1,5 @@
 #include "Basic_C++.h"
 
-
 void _Bin_Oct_Dec_Hex()
 {
 	unsigned char Bin = 0b0101'0101;	// 2진법 표기법
@@ -8,7 +7,6 @@ void _Bin_Oct_Dec_Hex()
 	unsigned char Dec = 85;				// 10진법 표기법
 	unsigned char Hex = 0x55;			// 16진법 표기법
 }
-
 
 void _text()
 {
@@ -34,162 +32,178 @@ void _text()
 	// CString	: TCAHR 베이스
 }
 
-
 void _Char()
 {
-	char		char_[] = "Hello World!";
+	char sample[] = "Hello World!";
+	char sample[100] = "Hello World!";
 
 	// int <-> char*
-	sprintf_s(pchar_, sizeof(pchar_), "%d", int_);		// int -> char*
-	int_ = atoi(pchar_);								// char* -> int
+	sprintf_s(_pchar_, sizeof(_pchar_), "%d", _int_);	// int -> char*
+	_int_ = atoi(_pchar_);								// char* -> int
 
 	// float <-> char*
-	sprintf_s(pchar_, sizeof(pchar_), "%f", float_);	// float -> char*
-	double_ = atof(pchar_);								// char* -> float
+	sprintf_s(_pchar_, sizeof(_pchar_), "%f", _float_);	// float -> char*
+	_double_ = atof(_pchar_);							// char* -> float
 
 	// CString <-> char*
-	CString_ = pchar_;						// char* -> CString
-	//pchar_ = CString_;					// CString -> char*의 경우 CString이 기본적으로 TCHAR이고, 유니코드에서 wchar_t로 동작하기 때문에 위험성이 있다.
+	_CString_ = _pchar_;					// char* -> CString
+	//pchar_ = CString_;					// CString -> char* CString이 기본적으로 TCHAR이고, 유니코드에서 wchar_t로 동작하기 때문에 위험
 
-	// string <-> char*
-	string_ = pchar_;						// char* -> string
-	cchar_ = string_.c_str();				// string -> const char*
-
+	// string <-> const char*
+	_string_ = _pchar_;						// char* -> string
+	_cpchar_ = _string_.c_str();			// string -> const char*
 
 	// fuction
 	{
-		const char* src;
-		const char* src_;
-		char* dst;
-		size_t length;
-
-		size_t size = strlen(dst);					// 문자열 길이					// \0까지의 길이, sizeof랑 값이 다름
-		strcpy_s(dst, sizeof(dst), src);			// 문자열 복사					// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
-		strncpy_s(dst, sizeof(dst), src, length);	// 문자열 지정길이만큼 복사		// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
-		strcat_s(dst, sizeof(src), src);			// 문자열 덧붙이기				// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
-		strncat_s(dst, sizeof(src), src, length);	// 문자열 지정길이만큼 덧붙이기	// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
-		strcmp(src, src_);							// 문자열 비교함수, 같으면 0		
-		strncmp(src, src_, length);					// 문자열 length만큼 비교, 같으면 0 
+		size_t size = strlen(_src_cpchar_);										// 문자열 길이					// \0까지의 길이, sizeof랑 값이 다름
+		strcpy_s(_dst_pchar_, sizeof(_dst_pchar_), _src_cpchar_);				// 문자열 복사					// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		strncpy_s(_dst_pchar_, sizeof(_dst_pchar_), _src_cpchar_, _length_);	// 문자열 지정길이만큼 복사		// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		strcat_s(_dst_pchar_, sizeof(_src_cpchar_), _src_cpchar_);				// 문자열 덧붙이기				// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		strncat_s(_dst_pchar_, sizeof(_src_cpchar_), _src_cpchar_, _length_);	// 문자열 지정길이만큼 덧붙이기	// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		strcmp(_src1_cpchar_, _src2_cpchar_);									// 문자열 비교함수, 같으면 0
+		strncmp(_src1_cpchar_, _src2_cpchar_, _length_);						// 문자열 length만큼 비교, 같으면 0
 	}
 }
 
 void _wchar_t()
 {
+	wchar_t sample[] = L"Hello World!";
+	wchar_t sample[100] = L"Hello World!";
+
 	// int <-> wchar_t*
-	swprintf_s(pwchar_t_, sizeof(pwchar_t_), L"%d", int_);		// int -> wchar_t*
-	int_ = _wtoi(pwchar_t_);		// wchar_t* -> int
+	swprintf_s(_pwchar_t_, sizeof(_pwchar_t_), L"%d", _int_);		// int -> wchar_t*
+	_int_ = _wtoi(_pwchar_t_);										// wchar_t* -> int
 
 	// float <-> wchar_t*
-	swprintf_s(pwchar_t_, sizeof(pwchar_t_), L"%f", float_);	// float -> wchar_t*
-	float_ = _wtof(pwchar_t_);		// wchar_t* -> float
+	swprintf_s(_pwchar_t_, sizeof(_pwchar_t_), L"%f", _float_);		// float -> wchar_t*
+	_float_ = _wtof(_pwchar_t_);									// wchar_t* -> float
 
 	// CString <-> const wchar_t*
-	CString_ = cwchar_t_;			// const wchar_t* -> CString
-	cwchar_t_ = CString_;			// CString -> const wchar_t*
-	
+	_CString_ = _cpwchar_t_;			// const wchar_t* -> CString
+	_cpwchar_t_ = _CString_;			// CString -> const wchar_t*
+
 	// wstring <-> const wchar_t*
-	wstring_ = cwchar_t_;			// const wchar_t* -> wstring
-	wstring_ = cwchar_t_;			// wstring -> const wchar_t* 
+	_cpwchar_t_ = _wstring_.c_str();	// const wchar_t* -> wstring
+	_wstring_ = _cpwchar_t_;			// wstring -> const wchar_t*
 
 	// fuction
 	{
-		const wchar_t* src;
-		const wchar_t* src_;
-		wchar_t* dst;
-		size_t length;
-
-		size_t size = wcslen(dst);					// 문자열 길이					// \0까지의 길이, sizeof랑 값이 다름
-		wcscpy_s(dst, sizeof(dst), src);			// 문자열 복사					// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
-		wcsncpy_s(dst, sizeof(dst), src, length);	// 문자열 지정길이만큼 복사		// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
-		wcscat_s(dst, sizeof(src), src);			// 문자열 덧붙이기				// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
-		wcsncat_s(dst, sizeof(src), src, length);	// 문자열 지정길이만큼 덧붙이기	// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
-		wcscmp(src, src_);							// 문자열 비교함수, 같으면 0		
-		wcsncmp(src, src_, length);					// 문자열 length만큼 비교, 같으면 0 
+		size_t size = wcslen(_dst_wchar_t_);										// 문자열 길이					// \0까지의 길이, sizeof랑 값이 다름
+		wcscpy_s(_dst_wchar_t_, sizeof(_dst_wchar_t_), _src_wchar_t_);				// 문자열 복사					// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		wcsncpy_s(_dst_wchar_t_, sizeof(_dst_wchar_t_), _src_wchar_t_, _length_);	// 문자열 지정길이만큼 복사		// sizeof(dst) > sizeof(src) 조건필수확인, src가 더 커도 동작하니 주의
+		wcscat_s(_dst_wchar_t_, sizeof(_src_wchar_t_), _src_wchar_t_);				// 문자열 덧붙이기				// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		wcsncat_s(_dst_wchar_t_, sizeof(_src_wchar_t_), _src_wchar_t_, _length_);	// 문자열 지정길이만큼 덧붙이기	// sizeof(dst) > 문자열길이(dst) + 문자열길이(src) 조건 확인
+		wcscmp(_src1_wchar_t_, _src2_wchar_t_);										// 문자열 비교함수, 같으면 0
+		wcsncmp(_src1_wchar_t_, _src2_wchar_t_, _length_);							// 문자열 length만큼 비교, 같으면 0
 	}
-
 }
-
 
 void _string()
 {
 	// #include <string>
+	std::string sample("Hello");
+	std::string sample = sample + "!";
 
-	std::string A("Hello");
-	std::string B = A + "!";
+	// int <-> string
+	_string_ = std::to_string(_int_);		// int -> string
+	_int_ = std::stof(_string_);			// string -> int
 
-	// Number <-> Text
-	{
-		// int
-		string_ = std::to_string(int_);		// int -> string
-		int_ = atoi(string_.c_str());		// string -> int
-		
-		//float
-		string_ = std::to_string(float_);	// float -> string
-		float_ = atof(string_.c_str());		// string -> float
-	}
+	// float <-> string
+	_string_ = std::to_string(_float_);		// float -> string
+	_float_ = std::stof(_string_);			// string -> float
 
-	// Text <-> Text
-	{
-		// char
-		cchar_ = string_.c_str();				// string -> const char*
-		string_ = pchar_;						// char* -> string
+	// const char* < -> string
+	_cpchar_ = _string_.c_str();			// string -> const char*
+	_string_ = _pchar_;						// char* -> string
 
-		// CString
-		CString_ = string_.c_str();				// string -> CString
-		string_ = CT2CA(CString_);				// CString -> string
-	}
+	// wstring <-> string
+	_string_.assign(_wstring_.begin(), _wstring_.end());	// wstring -> string
+	_wstring_.assign(_string_.begin(), _string_.end());		// string -> wstring
+
+	// CString <-> string
+	_CString_ = _string_.c_str();			// string -> CString
+	_string_ = CT2CA(_CString_);			// CString -> string
 }
 
+void _wstring()
+{
+	// #include <string>
+	std::wstring sample(L"Hello");
+	std::wstring sample = sample + L"!";
+
+	// int <-> wstring
+	_wstring_ = std::to_wstring(_int_);			// int -> string
+	_int_ = stoi(_wstring_);					// string -> int
+
+	// float <-> string
+	_wstring_ = std::to_wstring(_float_);		// float -> string
+	_float_ = stof(_wstring_);					// string -> float
+
+	// const wchar_t* <-> wstring
+	_cpwchar_t_ = _wstring_.c_str();			// const wchar_t* -> wstring
+	_wstring_ = _cpwchar_t_;					// wstring -> const wchar_t*
+
+	// string <-> wstring
+	_string_.assign(_wstring_.begin(), _wstring_.end());	// wstring -> string
+	_wstring_.assign(_string_.begin(), _string_.end());		// string -> wstring
+
+	// CString <-> wstring
+	_CString_ = _wstring_.c_str();			// wstring -> CString
+	_wstring_ = _CString_;					// CString -> wstring
+}
 
 void _CString()
 {
 	//#include <afxstr.h>
-	
-	CString_.Delete(0, CString_.GetLength());
-		//  .GetLength			설정된 문자열의 길이를 리턴
-		//  .IsEmpty			문자열 버퍼가 비워져 있으면 TRUE, 그렇지 않으면 FALSE
-		//  .Empty				문자열을삭제하여 버퍼를 비움
-		//  .GetAt				문자열의 특정 위치의 문자값을 얻음
-		//  .SetAt				문자열의 특정 위치에 새로운 문자를 삽입
-		//  .Compare			문자열을 비교, 같으면 0, 그렇지 않으면 0 이 아닌 값을 리턴
-		//  .Mid, Left, Right	문자열 중간, 좌측, 우측부터 특정 위치 문자열을 CString 으로 추출
-		//  .MakeUpper			문자열을 모두 대문자로 바꿈
-		//  .MakeLower			문자열을 모두 소문자로 바꿈
-		//  .Format				sprintf 형태로 문자열에 문자 넣기
-		//  .Find				문자열에서 특정 문자(열)를 찾기
 
-	// Number <-> Text
-	{
-		// int
-		int_ = _ttoi(CString_);						// CString -> int
-		CString_.Format(_T("%02d"),int_);			// int -> CString
+	_CString_.Delete(0, _CString_.GetLength());
+		//   .GetLength			설정된 문자열의 길이를 리턴
+		//   .IsEmpty			문자열 버퍼가 비워져 있으면 TRUE, 그렇지 않으면 FALSE
+		//   .Empty				문자열을삭제하여 버퍼를 비움
+		//   .GetAt				문자열의 특정 위치의 문자값을 얻음
+		//   .SetAt				문자열의 특정 위치에 새로운 문자를 삽입
+		//   .Compare			문자열을 비교, 같으면 0, 그렇지 않으면 0 이 아닌 값을 리턴
+		//   .Mid, Left, Right	문자열 중간, 좌측, 우측부터 특정 위치 문자열을 CString 으로 추출
+		//   .MakeUpper			문자열을 모두 대문자로 바꿈
+		//   .MakeLower			문자열을 모두 소문자로 바꿈
+		//   .Format			sprintf 형태로 문자열에 문자 넣기
+		//   .Find				문자열에서 특정 문자(열)를 찾기
 
-		// float
-		float_ = _ttof(CString_);					// CString -> float
-		CString_.Format(_T("%02f"), float_);		// float -> CString
-	}
-	
-	// Text <-> Text
-	{
-		// TCHAR
-		pTCHAR_ = (TCHAR*)(LPCTSTR)CString_;			// CString -> TCHAR
-		CString_ = (LPCTSTR)pTCHAR_;					// TCHAR -> CString
+	// int <-> CString
+	_int_ = _ttoi(_CString_);						// CString -> int
+	_CString_.Format(_T("%02d"), _int_);			// int -> CString
 
-		// char
-		CString_ = cchar_;							// char* -> CString
-	}
+	// float <-> CString
+	_float_ = _ttof(_CString_);						// CString -> float
+	_CString_.Format(_T("%02f"), _float_);			// float -> CString
+
+	// const char* -> CString
+	_CString_ = _cpchar_;							// char* -> CString
+
+	// const wchar_t* <-> CString
+	_cpwchar_t_ = _CString_;						// CString -> const wchar_t*
+	_CString_ = _cpwchar_t_;						// const wchar_t* -> CString
+
+	// TCHAR <-> CString
+	_pTCHAR_ = (TCHAR*)(LPCTSTR)_CString_;			// CString -> TCHAR*
+	_CString_ = (LPCTSTR)_pTCHAR_;					// TCHAR -> CString
+
+	// string <-> CString
+	_string_ = CT2CA(_CString_);					// CString -> string
+	_CString_ = _string_.c_str();					// string -> CString
+
+	// wstring <-> CString
+	_wstring_ = _CString_;							// CString -> wstring
+	_CString_ = _wstring_.c_str();					// wstring -> CString
 }
-
-
-
 
 void _vector()
 {
 	// #include <vector>
 
-	std::vector<int> vector_(100,0);	// 원소 100개, 0으로 초기화
-
-	vector_.resize(10,0);		//		원소 10개로 늘림, 빈공간 0으로 초기화
+	std::vector<int> vector_(100, 0);	// 원소 100개, 0으로 초기화
+	
+	vector_.resize(10, 0);
 		// .assign(n, x)		x 값으로 n 개의 원소를 할당
 		// .at(n)				n 번째 원소를 참조
 		// .front()				vector_의 첫 번째 원소를 참조
@@ -206,8 +220,8 @@ void _vector()
 		// .insert(a, n, x)		vector_가 가리키는 위치에 x 값을 n 개 삽입
 		// .pop_back()			vector_의 마지막 원소를 제거
 		// .push_back(x)		vector_의 마지막 공간에 x 값을 삽입
+		// .resize(n, x)		vector_의 원소 n개로 늘림, 빈공간 x으로 초기화
 		// .rbegin()			vector_의 역순에서 첫 번째 원소를 가리키는 반복자
 		// .rend()				vector_의 역순에서 마지막 원소를 가리키는 반복자
 		// .swap(v1)			vector_와 v1을 바꿈
 }
-

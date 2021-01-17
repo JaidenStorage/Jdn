@@ -3,29 +3,45 @@
 #include <vector>
 #include <tchar.h>
 
-bool bool_;
+bool			_bool_;
 
-char char_;
-char char__[];
-char* pchar_;
-const char* cchar_;
+int				_int_;
+long			_long_;
+float			_float_;
+double			_double_;
 
-wchar_t wchar_t_;
-wchar_t wchar_t__[];
-wchar_t* pwchar_t_;
-const wchar_t* cwchar_t_;
+// Char
+char			_char_;
+char*			_pchar_;
+const char*		_cpchar_;
 
-int int_;
-long long_;
-float float_;
-double double_;
+// wchar_t
+wchar_t			_wchar_t_;
+wchar_t*		_pwchar_t_;
+const wchar_t*	_cpwchar_t_;
 
-std::string string_;	
-std::wstring wstring_;
+// string
+std::string		_string_;
+std::wstring	_wstring_;
 
-CString CString_;
-CStringA CStringA_;
-CStringW CStringW_;
+// CString
+CString			_CString_;
+CStringA		_CStringA_;
+CStringW		_CStringW_;
 
-TCHAR* pTCHAR_;
-TCHAR* pTCHAR_;
+// Char
+const char*		_src_cpchar_;
+const char*		_src1_cpchar_;
+const char*		_src2_cpchar_;
+char*			_dst_pchar_;
+size_t			_length_;
+
+// wchar_t
+const wchar_t*	_src_wchar_t_;
+const wchar_t*	_src1_wchar_t_;
+const wchar_t*	_src2_wchar_t_;
+wchar_t*		_dst_wchar_t_;
+
+// TCHAR
+TCHAR			_TCHAR_;
+TCHAR*			_pTCHAR_;
