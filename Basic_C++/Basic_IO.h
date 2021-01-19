@@ -2,6 +2,7 @@
 
 #include <string>
 #include <fstream>
+#include <iomanip>
 
 bool			_bool_;
 

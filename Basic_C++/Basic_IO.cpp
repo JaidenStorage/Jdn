@@ -1,6 +1,8 @@
 #include "Basic_IO.h"
 
 #define MAX_STR_SIZE 100
+#define NUMBER 5
+
 
 /* 
 	fopen_s 모드
@@ -84,13 +86,21 @@ void FileLoad_C()
 
 void FileWrite_CPP()
 {
-	std::fstream File_IO;	// fstream = ofstream + ifstream
+	std::fstream File_IO;	// fstream = ofstream(ios::out) + ifstream(ios::in)
 
-	//File_IO.open("example.txt", std::ios::binary | std::ios::ate);
+	File_IO.open("example.txt", std::ios::out | std::ios::in |  std::ios::binary | std::ios::ate);
+		// std::ios::in		읽기위한 파일 열기
+		// std::ios::out	쓰기위한 파일 열기
+		// std::ios::ate	(in)파일의 끝에 위치
+		// std::ios::app	(out)모든 출력은 파일의 끝에 추가된다.
+		// std::ios::trunc	(out)만약 파일이 존재하면 지운다.
+		// std::ios::binary	이진(Binary) 모드
 
-	//fout << "file output stream test" << std::endl;
-	//https://blog.naver.com/jhonbeetbox/222122559876
-	//https://blog.naver.com/jade3011/222143409421
+	File_IO << _int_ << std::endl;
+	File_IO << std::setprecision(NUMBER) << _float_ << std::endl;	// NUMBER 숫자갯수만큼 출력
+	File_IO << std::fixed << std::setprecision(NUMBER) << _float_ << std::endl;	//	소수점이하 NUMBER 숫자갯수만큼 출력, NUMBER+1자리에서 반올림주의
+	File_IO << std::setfill('#') << std::setw(NUMBER) << _float_ << std::endl;	//	NUMBER공간에 출력, 빈공간은 '#'으로 채움
+	File_IO.close();
 }
 
 void FileLoad_CPP()
