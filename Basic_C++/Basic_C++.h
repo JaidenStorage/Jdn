@@ -1,7 +1,9 @@
+#pragma once
 #include <afxstr.h>
 #include <string>
 #include <vector>
 #include <tchar.h>
+
 
 bool			_bool_;
 
@@ -29,6 +31,10 @@ CString			_CString_;
 CStringA		_CStringA_;
 CStringW		_CStringW_;
 
+// TCHAR
+TCHAR			_TCHAR_;
+TCHAR*			_pTCHAR_;
+
 // Char
 const char*		_src_cpchar_;
 const char*		_src1_cpchar_;
@@ -41,7 +47,3 @@ const wchar_t*	_src_wchar_t_;
 const wchar_t*	_src1_wchar_t_;
 const wchar_t*	_src2_wchar_t_;
 wchar_t*		_dst_wchar_t_;
-
-// TCHAR
-TCHAR			_TCHAR_;
-TCHAR*			_pTCHAR_;
