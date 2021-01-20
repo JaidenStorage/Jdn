@@ -118,11 +118,16 @@ void _string()
 
 	// wstring <-> string
 	_string_.assign(_wstring_.begin(), _wstring_.end());	// wstring -> string
+	_string_ = CT2CA(_wstring_.c_str());	// wstring -> string 
 	_wstring_.assign(_string_.begin(), _string_.end());		// string -> wstring
+	_wstring_ = CA2CT(_string_.c_str());	// string -> wstring
+
 
 	// CString <-> string
 	_CString_ = _string_.c_str();			// string -> CString
+	_CString_ = CA2CT(_string_.c_str());	// string -> CString
 	_string_ = CT2CA(_CString_);			// CString -> string
+	_string_ = CT2CA(_CString_.operator LPCWSTR());	// CString -> string
 }
 
 void _wstring()
@@ -144,12 +149,16 @@ void _wstring()
 	_wstring_ = _cpwchar_t_;					// wstring -> const wchar_t*
 
 	// string <-> wstring
+
 	_string_.assign(_wstring_.begin(), _wstring_.end());	// wstring -> string
+	_string_ = CT2CA(_wstring_.c_str());	// wstring -> string 
 	_wstring_.assign(_string_.begin(), _string_.end());		// string -> wstring
+	_wstring_ = CA2CT(_string_.c_str());	// string -> wstring
 
 	// CString <-> wstring
 	_CString_ = _wstring_.c_str();			// wstring -> CString
 	_wstring_ = _CString_;					// CString -> wstring
+	_wstring_ = _CString_.operator LPCWSTR();	// CString -> wstring
 }
 
 void _CString()
@@ -190,10 +199,13 @@ void _CString()
 
 	// string <-> CString
 	_string_ = CT2CA(_CString_);					// CString -> string
+	_string_ = CT2CA(_CString_.operator LPCWSTR());	// CString -> string 
 	_CString_ = _string_.c_str();					// string -> CString
+	_CString_ = CA2CT(_string_.c_str());	// string -> CString
 
 	// wstring <-> CString
 	_wstring_ = _CString_;							// CString -> wstring
+	_wstring_ = _CString_.operator LPCWSTR();		// CString -> wstring
 	_CString_ = _wstring_.c_str();					// wstring -> CString
 }
 
