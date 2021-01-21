@@ -237,3 +237,54 @@ void _vector()
 		// .rend()				vector_의 역순에서 마지막 원소를 가리키는 반복자
 		// .swap(v1)			vector_와 v1을 바꿈
 }
+
+void _srand()
+{
+	// #include <stdlib.h>	-> srand
+	// #include <time.h>	-> time
+
+	// 시드표를 시간으로 교체
+	srand(unsigned(time(NULL)));
+	int _rand_ = rand();
+
+}
+
+void _memory()
+{
+	// stack : 내부 {} 중괄호 영역에서 할당되는 메모리
+	// heap : 프로그래머가 직접 할당, 해제 - malloc(<->free),calloc(<->free),new(<->delete) 등
+
+		// malloc 동적할당
+	{
+		int _src_[5] = { 1,2,3,4,5 };
+		int _count_ = sizeof(_src_) / sizeof(int);
+		int _size_ = sizeof(_src_);	// _size_ = _count_ * sizeof(int)
+
+		int* _dst_ = (int*)malloc(_size_);
+		memcpy(_dst_, _src_, _size_);	// 메모리카피
+		free(_dst_);
+	}
+
+	// calloc 동적할당
+	{
+		int _src_[5] = { 1,2,3,4,5 };
+		int _count_ = sizeof(_src_) / sizeof(int);
+		int _size_ = sizeof(_src_);	// _size_ = _count_ * sizeof(int)
+
+		int* _dst_ = (int*)calloc(_count_, sizeof(int));
+		memcpy(_dst_, _src_, _size_);
+		free(_dst_);
+	}
+
+	// new 동적할당
+	{
+		int _src_[5] = { 1,2,3,4,5 };
+		int _count_ = sizeof(_src_) / sizeof(int);
+		int _size_ = sizeof(_src_);	// _size_ = _count_ * sizeof(int)
+
+		int* _dst_ = new int[_count_];
+		memcpy(_dst_, _src_, _size_);
+		delete _dst_;
+	}
+
+}

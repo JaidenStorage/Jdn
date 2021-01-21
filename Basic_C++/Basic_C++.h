@@ -3,6 +3,9 @@
 #include <string>
 #include <vector>
 #include <tchar.h>
+#include <time.h>
+#include <stdlib.h>
+
 
 
 bool			_bool_;
