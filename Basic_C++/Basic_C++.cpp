@@ -1,5 +1,22 @@
 #include "Basic_C++.h"
 
+void _type()
+{
+	bool	_bool_;		// 1 byte
+	char	_char_;		// 1 byte
+	short	_short_;	// 2 byte
+	int		_int_;		// 4 byte
+	long	_long_;		// 4 byte
+	float	_float_;	// 4 byte
+	double	_double_;	// 8 byte
+
+	INT8	_INT8_;		// 1 byte = 8bit
+	INT16	_INT16_;	// 2 byte = 16bit
+	INT32	_INT32_;	// 4 byte = 32bit
+	INT64	_INT64_;	// 8 byte = 64bit
+
+}
+
 void _Bin_Oct_Dec_Hex()
 {
 	unsigned char Bin = 0b0101'0101;	// 2진법 표기법
@@ -31,6 +48,7 @@ void _text()
 	// CStringW	: wchar_t 베이스
 	// CString	: TCAHR 베이스
 }
+
 
 void _Char()
 {
@@ -65,6 +83,7 @@ void _Char()
 	}
 }
 
+
 void _wchar_t()
 {
 	wchar_t sample[] = L"Hello World!";
@@ -98,6 +117,7 @@ void _wchar_t()
 	}
 }
 
+
 void _string()
 {
 	// #include <string>
@@ -130,6 +150,7 @@ void _string()
 	_string_ = CT2CA(_CString_.operator LPCWSTR());	// CString -> string
 }
 
+
 void _wstring()
 {
 	// #include <string>
@@ -160,6 +181,7 @@ void _wstring()
 	_wstring_ = _CString_;					// CString -> wstring
 	_wstring_ = _CString_.operator LPCWSTR();	// CString -> wstring
 }
+
 
 void _CString()
 {
@@ -209,6 +231,7 @@ void _CString()
 	_CString_ = _wstring_.c_str();					// wstring -> CString
 }
 
+
 void _vector()
 {
 	// #include <vector>
@@ -238,6 +261,7 @@ void _vector()
 		// .swap(v1)			vector_와 v1을 바꿈
 }
 
+
 void _srand()
 {
 	// #include <stdlib.h>	-> srand
@@ -248,6 +272,7 @@ void _srand()
 	int _rand_ = rand();
 
 }
+
 
 void _memory()
 {
@@ -286,5 +311,18 @@ void _memory()
 		memcpy(_dst_, _src_, _size_);
 		delete _dst_;
 	}
+
+}
+
+
+class _class
+{
+	// public(외부) >> protected(내부+자식) >> private(내부)
+
+public:
+
+protected:
+
+private:
 
 }
