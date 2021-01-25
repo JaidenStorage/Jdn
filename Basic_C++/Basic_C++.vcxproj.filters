@@ -21,12 +21,18 @@
     <ClCompile Include="Basic_IO.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="C++_Math.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basic_C++.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Basic_IO.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="C++_Math.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
