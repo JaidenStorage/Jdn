@@ -15,6 +15,8 @@ void _type()
 	INT32	_INT32_;	// 4 byte = 32bit
 	INT64	_INT64_;	// 8 byte = 64bit
 
+	_int_ = static_cast<int>(_float_);	// 형변환
+	_int_ = int(_float_);				// 형변환
 }
 
 void _Bin_Oct_Dec_Hex()
@@ -279,36 +281,37 @@ void _memory()
 	// stack : 내부 {} 중괄호 영역에서 할당되는 메모리
 	// heap : 프로그래머가 직접 할당, 해제 - malloc(<->free),calloc(<->free),new(<->delete) 등
 
-		// malloc 동적할당
-	{
-		int _src_[5] = { 1,2,3,4,5 };
-		int _count_ = sizeof(_src_) / sizeof(int);
-		int _size_ = sizeof(_src_);	// _size_ = _count_ * sizeof(int)
+	int _src_[5] = { 1,2,3,4,5 };
+	int _count_ = sizeof(_src_) / sizeof(int);
+	int _size_ = sizeof(_src_);	// _size_ = _count_ * sizeof(int)
 
-		int* _dst_ = (int*)malloc(_size_);
-		memcpy(_dst_, _src_, _size_);	// 메모리카피
+	// malloc 동적할당
+	{
+		int* _dst_ = (int*)malloc(_size_);	// 랜덤 값으로 채워진 공간할당
+		memcpy(_dst_, _src_, _size_);		// 메모리카피
 		free(_dst_);
 	}
 
 	// calloc 동적할당
 	{
-		int _src_[5] = { 1,2,3,4,5 };
-		int _count_ = sizeof(_src_) / sizeof(int);
-		int _size_ = sizeof(_src_);	// _size_ = _count_ * sizeof(int)
-
-		int* _dst_ = (int*)calloc(_count_, sizeof(int));
-		memcpy(_dst_, _src_, _size_);
+		int* _dst_ = (int*)calloc(_count_, sizeof(int));	// 0으로 채워진 공간할당
+		memcpy(_dst_, _src_, _size_);						// 메모리카피
 		free(_dst_);
 	}
 
 	// new 동적할당
 	{
-		int _src_[5] = { 1,2,3,4,5 };
-		int _count_ = sizeof(_src_) / sizeof(int);
-		int _size_ = sizeof(_src_);	// _size_ = _count_ * sizeof(int)
-
 		int* _dst_ = new int[_count_];
 		memcpy(_dst_, _src_, _size_);
+		delete _dst_;
+	}
+
+	// memset : 할당된 공간에 값 설정
+	{
+		int _val_ = 5;
+
+		int* _dst_ = new int[_count_];
+		memset(_dst_, _val_, _count_);	// dst에 val으로 count만큼 채움
 		delete _dst_;
 	}
 
