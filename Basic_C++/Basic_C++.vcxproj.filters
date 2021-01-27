@@ -21,7 +21,10 @@
     <ClCompile Include="Basic_IO.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="C++_Math.cpp">
+    <ClCompile Include="Math.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,9 +33,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Basic_IO.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="C++_Math.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
