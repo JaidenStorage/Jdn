@@ -161,7 +161,16 @@ void File_IO_CPP()
 		File_IO.open(fileName, std::ios::out | std::ios::in | std::ios::binary);
 		if (File_IO.is_open())
 		{
-			File_IO >> _string_;
+			while (File_IO.eof()==false)
+			{
+				File_IO >> _string_;
+				//_string_ = File_IO.get();
+			}
+
+			while (getline(File_IO, _string_))
+			{
+				// 추가동작
+			}
 		}
 		File_IO.close();
 	}
@@ -173,11 +182,69 @@ void File_IO_CPP()
 		File_IO.open(fileName, std::ios::out | std::ios::in | std::ios::binary);
 		if (File_IO.is_open())
 		{
-			File_IO >> _wstring_;
+			while (File_IO.eof() == false)
+			{
+				File_IO >> _wstring_;
+				//_wstring_ = File_IO.get();
+			}
+
+			while (getline(File_IO, _wstring_))
+			{
+				// 추가동작
+			}
+
 		}
 		File_IO.close();
 	}
 
+	// Load :: ssstream
+	{
+		//#include <sstream>
+
+		std::wfstream File_IO;	// fstream = ofstream(ios::out) + ifstream(ios::in)
+		std::string fileName = "example.txt";
+		File_IO.open(fileName, std::ios::out | std::ios::in | std::ios::binary);
+
+		std::stringstream _stringStream_;
+		_stringStream_ << File_IO.rdbuf();
+
+		File_IO.close();
+
+		while (!_stringStream_.eof())
+		{
+			_stringStream_ >> _string_;
+		}
+
+	}
+
 }
 
+void File_IO_Basic()
+{
+	//#include <filesystem>
+	namespace _Filesystem_ = std::experimental::filesystem;
 
+	// 현재경로
+	_Filesystem_::path _path_ = _Filesystem_::current_path();
+	std::string _path_string_ = _path_.string();
+
+	// 폴더존재여부
+	if (_Filesystem_::exists("c:\\jdn"))
+
+	// 폴더 내 파일 전체탐색
+	for (auto& p : _Filesystem_::directory_iterator("c:\\jdn"))
+	{
+		p.path();
+	}
+
+	// 폴더생성
+	_Filesystem_::create_directories("c:\\jdn");
+	// 폴더복사
+	_Filesystem_::copy("c:\\jdn1", "c:\\jdn2");
+	// 폴더삭제
+	_Filesystem_::remove("c:\\jdn1");
+	// 파일사이즈
+	int _size_ = _Filesystem_::file_size("c:\\jdn1");
+
+
+}
