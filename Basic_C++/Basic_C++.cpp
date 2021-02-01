@@ -144,12 +144,12 @@ void _string()
 	_wstring_.assign(_string_.begin(), _string_.end());		// string -> wstring
 	_wstring_ = CA2CT(_string_.c_str());	// string -> wstring
 
-
 	// CString <-> string
 	_CString_ = _string_.c_str();			// string -> CString
 	_CString_ = CA2CT(_string_.c_str());	// string -> CString
 	_string_ = CT2CA(_CString_);			// CString -> string
 	_string_ = CT2CA(_CString_.operator LPCWSTR());	// CString -> string
+
 }
 
 
