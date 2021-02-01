@@ -246,5 +246,4 @@ void File_IO_Basic()
 	// 파일사이즈
 	int _size_ = _Filesystem_::file_size("c:\\jdn1");
 
-
 }

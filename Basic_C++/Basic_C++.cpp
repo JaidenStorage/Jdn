@@ -278,6 +278,7 @@ void _srand()
 
 void _memory()
 {
+	// data : 
 	// stack : 내부 {} 중괄호 영역에서 할당되는 메모리
 	// heap : 프로그래머가 직접 할당, 해제 - malloc(<->free),calloc(<->free),new(<->delete) 등
 
