@@ -4,13 +4,21 @@
 #define NUMBER 5
 
 
-
-
 void File_IO_Korean()
 {
 	//#include <locale>
 	setlocale(LC_ALL, "Korean");
 	std::locale::global(std::locale("Korean"));
+}
+
+
+void File_IO_Name()
+{
+	//#include <atltime.h>
+	std::wstring fileName;
+	fileName += CTime::GetCurrentTime().Format(L"D%Y%m%dT%H%M%S_").operator LPCWSTR();	//현재시간
+	fileName += std::to_wstring(GetTickCount());										//시스템카운트
+	fileName += L".raw";																//확장자
 }
 
 
