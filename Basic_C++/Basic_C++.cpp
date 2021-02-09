@@ -1,5 +1,11 @@
 #include "Basic_C++.h"
 
+/*
+> 弃歹沥府
+	备己加己 > 老馆 > 老馆加己 > 免仿叼泛磐府 : $(SolutionDir)$(ProjectName)_$(Configuration)_$(Platform)\
+	备己加己 > 老馆 > 老馆加己 > 吝埃叼泛磐府 : $(SolutionDir)$(ProjectName)_$(Configuration)_$(Platform)_temp\
+*/
+
 void _type()
 {
 	bool	_bool_;		// 1 byte
