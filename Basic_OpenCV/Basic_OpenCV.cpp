@@ -129,7 +129,6 @@ void JdnCV_Basic()
 		cv::threshold(src, dst, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);	// 자동 Threshold
 		cv::adaptiveThreshold(src, dst, 255, cv::ADAPTIVE_THRESH_MEAN_C, cv::THRESH_BINARY, size, var);
 
-
 		// Blur 필터, 전처리 필터
 		cv::blur(src, dst, cv::Size(row, col));
 		cv::GaussianBlur(src, dst, cv::Size(row, col), sigmaX);	// Sigma : 표준편차값

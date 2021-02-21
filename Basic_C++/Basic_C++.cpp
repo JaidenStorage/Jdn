@@ -235,6 +235,7 @@ void _CString()
 
 	// wstring <-> CString
 	_wstring_ = _CString_;							// CString -> wstring
+	_wstring_ = _CString_;							// CString -> wstring
 	_wstring_ = _CString_.operator LPCWSTR();		// CString -> wstring
 	_CString_ = _wstring_.c_str();					// wstring -> CString
 }
@@ -284,7 +285,7 @@ void _srand()
 
 void _memory()
 {
-	// data : 
+	// data : 프로그램의 전역 변수와 정적(static) 변수가 저장되는 영역, 프로그램의 시작과 함께 할당, 프로그램이 종료되면 소멸
 	// stack : 내부 {} 중괄호 영역에서 할당되는 메모리
 	// heap : 프로그래머가 직접 할당, 해제 - malloc(<->free),calloc(<->free),new(<->delete) 등
 

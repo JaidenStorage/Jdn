@@ -1,17 +1,15 @@
 #include <ctime>
 #include <atltime.h>
+#include <string>
 
 void Now_Time()
 {
-	CTime Now = CTime::GetCurrentTime();
+	//#include <atltime.h>
+	CString csNowTime = CTime::GetCurrentTime().Format(_T("%y%m%d_%H%M%S"));
 
-	CString NowTime = Now.Format(_T("%y%m%d_%H%M%S"));
-	CString Year = Now.Format(_T("%y"));
-	CString Month = Now.Format(_T("%m"));
-	CString	Day = Now.Format(_T("%d"));
-	CString Hour = Now.Format(_T("%H"));
-	CString Minute = Now.Format(_T("%M"));
-	CString second = Now.Format(_T("%S"));
+	//#include <atltime.h>
+	//#include <string>
+	std::wstring wsNowTime = CTime::GetCurrentTime().Format(L"D%Y%m%dT%H%M%S").operator LPCWSTR();	//현재시간
 
 }
 
@@ -50,7 +48,7 @@ void Timer_ms()	// 분해능 16ms
 void Timer_us()
 {
 	UINT64 SystemFrequency = NULL, StartTick = NULL, StopTick = NULL;
-	DOUBLE ResultTime_sec = NULL, ResultTime_ms = NULL, ResultTime_us = NULL;
+	DOUBLE Result_sec = NULL, Result_ms = NULL, Result_us = NULL;
 
 	QueryPerformanceFrequency((LARGE_INTEGER*)&SystemFrequency);
 	QueryPerformanceCounter((LARGE_INTEGER*)&StartTick);
@@ -60,9 +58,9 @@ void Timer_us()
 	QueryPerformanceCounter((LARGE_INTEGER*)&StopTick);
 
 	// 결과
-	ResultTime_sec = static_cast<DOUBLE>(StopTick - StartTick) / static_cast<DOUBLE>(SystemFrequency);
-	ResultTime_ms = static_cast<DOUBLE>(StopTick - StartTick) * pow(10, 3) / static_cast<DOUBLE>(SystemFrequency);
-	ResultTime_us = static_cast<DOUBLE>(StopTick - StartTick) * pow(10, 6) / static_cast<DOUBLE>(SystemFrequency);
+	Result_sec = static_cast<DOUBLE>(StopTick - StartTick) / static_cast<DOUBLE>(SystemFrequency);
+	Result_ms = static_cast<DOUBLE>(StopTick - StartTick) * pow(10, 3) / static_cast<DOUBLE>(SystemFrequency);
+	Result_us = static_cast<DOUBLE>(StopTick - StartTick) * pow(10, 6) / static_cast<DOUBLE>(SystemFrequency);
 }
 
 		 
